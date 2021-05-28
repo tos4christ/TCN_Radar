@@ -9,6 +9,7 @@ import Home from './Components/Home';
 import SignIn from './Components/SignInComponent';
 import Employee from './Components/Employee';
 import SignOut from './Components/SignOut';
+import FeederReading from './components/FeederReading';
 
 class App extends React.Component {
 
@@ -17,6 +18,9 @@ class App extends React.Component {
       <Router>
         <div className="App">
           <Header />
+
+          <FeederReading />
+
           <Switch >
             <Route exact path='/' render={() => <Home /> }  />
             <Route exact path='/TeamWork-FrontEnd' render={() => <Home /> }  />
