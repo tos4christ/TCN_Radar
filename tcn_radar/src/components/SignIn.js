@@ -1,7 +1,5 @@
 import React from 'react';
-import './css/SignIn.css';
 import {withRouter} from 'react-router';
-import ls from 'local-storage';
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -10,49 +8,11 @@ class SignIn extends React.Component {
       value: 'Male'
     }
   }
-  handleSubmission = (e) => {
-    e.preventDefault();
-    const url = "https://teamworksng.herokuapp.com/api/v1/auth/signin";
-    const data = {email: this.email.value, password: this.password.value}
-    fetch(url, {
-      method: 'POST',
-      mode: 'cors',
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then((res) => res.json())
-    .then((result) => {
-      ls.set('userDetails', result.data.allDetails);
-      ls.set('profile_pic', result.data.allDetails.profile_pic);
-      this.setToken(result.data.token, result.data.userId, result.data.userName);
-      if(this.admin.checked) {
-        this.props.history.push('/api/v1/admin');
-      } else if(this.employee.checked) {
-        this.props.history.push('/api/v1/employee/feed');
-      }
-    })
-    .catch(e => console.error(e))
-  }
   handleChange = e => {
     this.setState({value: e.target.value});
   }
-  setToken = (token, userId, userName) => {
-    ls.set('token', token);
-    ls.set('userId', userId);
-    ls.set('userName', userName);
-    setTimeout(() => {
-      this.props.history.push('/signout');
-      ls.remove('token');
-      ls.remove('userId');
-      ls.remove('userName');
-      ls.remove('profile_pic');
-      ls.remove('userDetails');
-    }, 600000);
-  }
+
   render() {
-    const { value } = this.state;
     return (
       <div className="container-fluid">
         <div className='row'>
@@ -73,7 +33,7 @@ class SignIn extends React.Component {
           </div>
           <div className='col-6 bg-signin'>
             <div className='form-div'>
-              <form onSubmit={this.handleSubmission} autoComplete="on">
+              <form autoComplete="on">
                 <h1 className='g-fonts my-5 ml-5 pl-5 text-white'>
                   Sign In
                 </h1>

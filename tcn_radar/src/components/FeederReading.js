@@ -22,6 +22,33 @@ class Footer extends React.Component {
             <label> Lekki </label>
           </div>
           <div className="col-3">
+          <div className="row">
+
+              <label className="col-4">
+                T11
+              </label>
+
+
+              <select className="col-4">
+                <option>
+
+                </option>
+                <option>
+
+                </option>
+              </select>
+              <span>.</span>
+
+              <select className="col-4">
+                  <option>
+
+                  </option>
+                  <option>
+
+                  </option>
+                </select>
+
+          </div>
             <select>
               <optgroup>
                 <option>
